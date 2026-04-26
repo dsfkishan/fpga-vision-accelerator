@@ -11,7 +11,7 @@ module address_gen #(
     output reg [7:0] x,          // X coordinate (0 to 127)
     output reg [7:0] y,          // Y coordinate (0 to 127)
     output reg [13:0] address,   // 1D Memory Address
-    output reg valid_out         // Tells the next module "Hey, data is flowing!"
+    output reg valid_out         
 );
 
     always @(posedge clk) begin
@@ -35,10 +35,6 @@ module address_gen #(
                 x <= x + 1; // Move to the next pixel in the row
             end
 
-            // The Address Calculation Trick
-            // Mathematically: address = y * 128 + x
-            // Hardware Trick: Multiplying by 128 is just shifting left by 7 bits. 
-            // So we can just glue the bits together to save FPGA area!
             address <= {y[6:0], x[6:0]}; 
             
         end else begin
