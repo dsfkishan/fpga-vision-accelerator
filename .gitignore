@@ -1,0 +1,32 @@
+# Vivado Project Files (Ignore generated build files, keep source files)
+*.jou
+*.log
+*.pb
+*.wdb
+*.vcd
+*.str
+*.zip
+.Xil/
+*_behav.wdb
+xsim.dir/
+.hw/
+.ip_user_files/
+.cache/
+.runs/
+.sim/
+
+# Python Environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Generated Image and Memory Files (Keep the repo lightweight)
+*.mem
+output_image.hex
+final_edge_image.hex
+fpga_result.png
+test_image.jpg
+test_image.png
