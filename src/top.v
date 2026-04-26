@@ -26,7 +26,7 @@ module top #(
     color_processor color_inst (.clk(clk), .reset(reset), .valid_in(addr_valid), .rgb_in(raw_rgb), .mode(color_mode), .rgb_out(processed_rgb), .gray_out(processed_gray), .valid_out(color_valid));
 
     // ==========================================
-    // 🔥 THE TRIPLE PARALLEL CONVOLUTION ENGINE
+    //  THE TRIPLE PARALLEL CONVOLUTION ENGINE
     // ==========================================
 
     // --- RED CHANNEL ---
@@ -74,7 +74,7 @@ module top #(
                 final_pixel <= rgb_delay_3; 
                 final_valid <= conv_r_valid; // All pipelines finish at the same time, so we just check Red
             end else begin
-                // Recombine the three separate math outputs into one full-color pixel!
+                // Recombine the three separate math outputs into one full-color pixel
                 final_pixel <= {conv_r_pixel, conv_g_pixel, conv_b_pixel}; 
                 final_valid <= conv_r_valid;
             end
