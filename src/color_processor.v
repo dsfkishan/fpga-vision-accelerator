@@ -3,13 +3,13 @@
 module color_processor (
     input wire clk,
     input wire reset,
-    input wire valid_in,         // Signal from address_gen saying "Pixel is ready!"
+    input wire valid_in,         
     input wire [23:0] rgb_in,    // 24-bit input from ROM (Format: R[23:16], G[15:8], B[7:0])
     input wire [1:0] mode,       // Switch inputs to choose the effect
     
     output reg [23:0] rgb_out,   // 24-bit color output
     output reg [7:0] gray_out,   // 8-bit grayscale output (fed to the Convolution core)
-    output reg valid_out         // Tells the next module "Processed pixel is ready!"
+    output reg valid_out         
 );
 
     // Extract individual color channels for readability
@@ -19,7 +19,7 @@ module color_processor (
 
     // Hardware Math for Grayscale
     // Real math: Gray = 0.299*R + 0.587*G + 0.114*B
-    // FPGA trick: Multiply by 256 (which is an 8-bit shift) to avoid decimals
+    // Multiply by 256 (which is an 8-bit shift) to avoid decimals
     // 0.299 * 256 ≈ 77  |  0.587 * 256 ≈ 150  |  0.114 * 256 ≈ 29
     wire [15:0] gray_calc = (r * 8'd77) + (g * 8'd150) + (b * 8'd29);
     wire [7:0] gray_pixel = gray_calc[15:8]; // Shift right by 8 (divide by 256)
